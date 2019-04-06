@@ -59,4 +59,20 @@ public function updateTaskView($id){
     // return redirect()->back();
 }
 
+public function updatetask(Request $request){
+
+    $this->validate($request,['task'=>'required|max:100|min:5',]);
+
+    $id=$request->id;
+    $task=$request->task;
+    $data=Task::find($id);
+    $data->task= $task;
+    $data->save();
+    $datas=Task::all();
+
+    return view('task')->with('tasks',$datas);
+
+}
+
+
 }

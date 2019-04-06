@@ -10,12 +10,31 @@
 </head>
 <body>
     <div class="container">
-        <form action="#" method="post">
-            <input type="text" class="form-control" name="task" value="{{$taskdata->task}}" />
-            <input type="submit" class="btn btn-warning" value="Update" />
+        <div class="text-center">
 
+    <br/>
+
+    @foreach($errors->all() as $error)
+
+        <div class="alert alert-danger" role="alert">
+        {{$error}}
+        </div>
+
+    @endforeach
+
+
+        <form action="/updatetasks" method="post">
+        {{csrf_field()}}
+            <br/>
+            <input type="text" class="form-control" name="task" value="{{$taskdata->task}}" />
+            <input type="hidden" name="id" value="{{$taskdata->id}}" />
+            <br/>
+            <input type="submit" class="btn btn-warning" value="Update" />
+            <a href="/task" type="button" class="btn btn-danger">Cancel</a>
+            <a href="/" type="button" class="btn btn-primary">Home</a>
 
         </form>
+        </div>
     </div>
 </body>
 </html>
